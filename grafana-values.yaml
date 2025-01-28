@@ -1,0 +1,14 @@
+persistence:
+  type: pvc
+  enabled: true
+  storageClassName: gp2
+  size: 1Gi
+datasources:
+  datasources.yaml:
+    apiVersion: 1
+    datasources:
+    - name: Prometheus
+      type: prometheus
+      url: http://prometheus-server.prometheus.svc.cluster.local
+      access: proxy
+      isDefault: true
