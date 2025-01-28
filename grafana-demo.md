@@ -1,12 +1,14 @@
-## Install Helm wget https://get.helm.sh/helm-v3.17.0-linux-amd64.tar.gz
+## Install Helm 
 
 ```
+wget https://get.helm.sh/helm-v3.17.0-linux-amd64.tar.gz
 tar -zxvf helm-v3.17.0-linux-amd64.tar.gz
 sudo mv linux-amd64/helm /usr/local/bin/helm
 helm version
 ```
 
-## Prerequisites for prometheus. Must be installed before Grafana
+## Prerequisites 
+Prometheus must be installed before Grafana
 
 ```
 kubectl create namespace prometheus
@@ -30,6 +32,8 @@ helm repo update
 ```
 
 # Deploy grafana helm chart
+
+Add values relevant for EKS 
 
 ```
 cat << EoF > grafana-values.yaml
@@ -81,3 +85,10 @@ For creating a dashboard to monitor the cluster:
 
 This will show monitoring dashboard for all cluster nodes
 
+## Uninstall
+After the demo, remember to uninstall prometheus and grafana
+
+```
+helm uninstall prometheus --namespace prometheus
+helm uninstall grafana --namespace grafana
+```
